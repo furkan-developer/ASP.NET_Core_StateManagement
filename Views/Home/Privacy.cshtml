@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
-}
+} 
 
-<h1>Name : @ViewData["Name"]</h1>
-<h1>Age : @ViewData["Age"]</h1>
+@if(string.IsNullOrEmpty(ViewData["AccessPerson"] as string))
+{
+    <h1>Name : @ViewData["Name"]</h1>
+    <h1>Age : @ViewData["Age"]</h1>
+}
+else
+{
+    <h1>Don't have person</h1>
+} 
