@@ -16,16 +16,19 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         Person person = new Person { Name = "furkan", Age = 23 };
+
+        await HttpContext.Session.LoadAsync();
         HttpContext.Session.SetObject<Person>(key: SessionKeyPerson, person);
 
         return View();
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> Privacy()
     {
+        await HttpContext.Session.LoadAsync();
         Person? person = HttpContext.Session.GetObject<Person>(key: SessionKeyPerson);
 
         if (person != default)
